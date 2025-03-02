@@ -18,6 +18,6 @@ export class MapComponent {
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' })
     ],
     zoom: 5,
-    center: latLng(46.879966, -121.726909)
+    center: latLng(33.67, 101.82)
   };
 }
