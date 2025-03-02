@@ -1,6 +1,19 @@
 <div class="row justify-content-center">
+    <div class="col-md-2 text-center">
+        <p>Choose Location</p>
+    </div>
+</div>
+<div class="row justify-content-center">
     <div class="col-md-8">
-        <div style="height: 300px;" leaflet [leafletOptions]="options">
+        <div style="height: 300px;" leaflet [leafletOptions]="options" (leafletClick)="handleClick($event)">
         </div>
+    </div>
+</div>
+<div class="row justify-content-around">
+    <div class="col-md-2">
+        <p>longitude</p>{{latLng.lng}}
+    </div>
+    <div class="col-md-2">
+        <p>latitude</p>{{latLng.lat}}
     </div>
 </div>

@@ -6,7 +6,6 @@ import { MapComponent } from "./components/map/map.component";
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
     MapComponent
   ],
   templateUrl: './app.component.html',
