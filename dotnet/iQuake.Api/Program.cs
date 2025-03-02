@@ -1,5 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://localhost:5006");
+builder.Services.AddControllers();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,6 +17,6 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
-
+app.MapControllers();
 app.Run();
 
