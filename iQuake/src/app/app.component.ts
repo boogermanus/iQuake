@@ -3,6 +3,7 @@ import { MapComponent } from "./components/map/map.component";
 import { DataService } from './services/data.service';
 import { ILocation } from './interfaces/ilocation';
 import { QuakesComponent } from './components/quakes/quakes.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
