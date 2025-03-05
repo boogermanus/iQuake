@@ -6,7 +6,7 @@ import { ILocation } from '../interfaces/ilocation';
 })
 export class DataService {
 
-  private readonly locationKey = 'location';
+  private readonly locationKey = 'iQuakeLocation';
   constructor() { }
 
   public saveLocation(location: ILocation): void {
