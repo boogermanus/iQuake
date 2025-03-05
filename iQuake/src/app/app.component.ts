@@ -16,7 +16,11 @@ import { ILocation } from './interfaces/ilocation';
 export class AppComponent {
   title = 'iQuake';
   location!: ILocation | null;
+  showLocation: boolean = true;
   constructor(private readonly dataService: DataService) {
     this.location = this.dataService.getLocation();
+    if(this.location === null) {
+      this.showLocation = true;
+    }
   }
 }
