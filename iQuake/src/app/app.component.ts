@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MapComponent } from "./components/map/map.component";
+import { DataService } from './services/data.service';
+import { ILocation } from './interfaces/ilocation';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +15,8 @@ import { MapComponent } from "./components/map/map.component";
 })
 export class AppComponent {
   title = 'iQuake';
+  location!: ILocation | null;
+  constructor(private readonly dataService: DataService) {
+    this.location = this.dataService.getLocation();
+  }
 }
