@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MapComponent } from "./components/map/map.component";
 import { DataService } from './services/data.service';
 import { ILocation } from './interfaces/ilocation';
+import { QuakesComponent } from './components/quakes/quakes.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    MapComponent
+    MapComponent,
+    QuakesComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -16,11 +17,15 @@ import { ILocation } from './interfaces/ilocation';
 export class AppComponent {
   title = 'iQuake';
   location!: ILocation | null;
-  showLocation: boolean = true;
+  showLocation: boolean = false;
   constructor(private readonly dataService: DataService) {
     this.location = this.dataService.getLocation();
     if(this.location === null) {
       this.showLocation = true;
     }
+  }
+
+  public locationSaved(value: boolean): void {
+    this.showLocation = !value;
   }
 }

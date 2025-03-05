@@ -1,5 +1,8 @@
 <div class="container">
   @if(showLocation) {
-  <app-map></app-map>
+  <app-map  (locationSaved)="locationSaved($event)"></app-map>
+  }
+  @if(!showLocation) {
+    <app-quakes></app-quakes>
   }
 </div>

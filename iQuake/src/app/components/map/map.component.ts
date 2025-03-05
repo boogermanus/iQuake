@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LatLng, latLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +18,8 @@ import { DataService } from '../../services/data.service';
 })
 export class MapComponent {
   public markers: Layer[] = [];
-  public latLng!: LatLng
+  public latLng!: LatLng;
+  public locationSaved = output<boolean>();
   public options: any = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
@@ -40,5 +41,6 @@ export class MapComponent {
 
   public saveLocation(): void {
     this.dataService.saveLocation({lat: this.latLng.lat, lng: this.latLng.lng});
+    this.locationSaved.emit(true);
   }
 }
