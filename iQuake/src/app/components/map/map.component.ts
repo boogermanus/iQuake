@@ -18,14 +18,14 @@ import { DataService } from '../../services/data.service';
 })
 export class MapComponent {
   public markers: Layer[] = [];
-  public latLng!: LatLng;
+  public latLng: LatLng = new LatLng(33.67,-101.82);
   public locationSaved = output<boolean>();
   public options: any = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
     ],
     zoom: 5,
-    center: latLng(33.67, -101.82)
+    center: this.latLng
   };
 
   constructor(private readonly dataService: DataService) {
