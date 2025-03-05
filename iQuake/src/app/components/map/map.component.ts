@@ -2,13 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LatLng, latLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
+import { MatButtonModule } from '@angular/material/button';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-map',
   standalone: true,
   imports: [
     LeafletModule,
-    CommonModule 
+    CommonModule,
+    MatButtonModule 
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
@@ -24,10 +27,18 @@ export class MapComponent {
     center: latLng(33.67, -101.82)
   };
 
+  constructor(private readonly dataService: DataService) {
+
+  }
+
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
     this.markers.splice(0);
     const newMarker = marker([this.latLng.lat, this.latLng.lng], {icon: icon({iconUrl: 'assets/marker-icon.png'})})
     this.markers.push(newMarker);
+  }
+
+  public saveLocation(): void {
+    this.dataService.saveLocation({lat: this.latLng.lat, lng: this.latLng.lng});
   }
 }
