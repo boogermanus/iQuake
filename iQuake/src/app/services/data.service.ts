@@ -14,11 +14,11 @@ export class DataService {
     localStorage.setItem(this.locationKey, json);
   }
 
-  public getLocation(): ILocation | null {
+  public getLocation(): ILocation | undefined {
     const data = localStorage.getItem(this.locationKey);
 
     if(data === null) {
-      return null;
+      return undefined;
     }
 
     const json = JSON.parse(data);

@@ -43,7 +43,8 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "leaflet"
+              "leaflet",
+              "moment"
             ]
           },
           "configurations": {
