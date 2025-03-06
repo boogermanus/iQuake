@@ -1,7 +1,33 @@
-<div class="row justify-content-center">
+<!-- <div class="row justify-content-center">
     <div class="col-md-8">
         @for(properties of features; track properties){
             <p>{{properties | json}}</p>
         }
     </div>
+</div> -->
+@for(quake of features; track quake){
+<div class="row justify-content-center mt-1">
+    <div class="col-md-4">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{quake.properties.place}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="d-flex flex-row">
+                    <div class="m-1">Mag:</div>
+                    <div class="m-1">{{quake.properties.mag}}</div>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="m-1">Date:</div>
+                    <div class="m-1">
+                        {{quake.properties.time | date: 'full'}}
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <a [href]="quake.properties.url">View</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>
+}

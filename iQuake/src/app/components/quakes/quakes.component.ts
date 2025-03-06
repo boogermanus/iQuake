@@ -3,13 +3,14 @@ import { QuakeService } from '../../services/quake.service';
 import { DataService } from '../../services/data.service';
 import { ILocation } from '../../interfaces/ilocation';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-quakes',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   templateUrl: './quakes.component.html',
   styleUrl: './quakes.component.scss'
