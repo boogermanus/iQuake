@@ -10,4 +10,8 @@
     <PackageReference Include="Permutate.Infrastructure" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\iQuake.Core\iQuake.Core.csproj" />
+  </ItemGroup>
+
 </Project>

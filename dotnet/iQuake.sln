@@ -1,8 +1,12 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iQuake.Api", "iQuake.Api\iQuake.Api.csproj", "{041C5017-A092-B0A3-7A70-208A1D4A86E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iQuake.Core", "iQuake.Core\iQuake.Core.csproj", "{E02EC85C-023D-4A12-AB90-106529B3ADD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iQuake.Infrastructure", "iQuake.Infrastructure\iQuake.Infrastructure.csproj", "{E3F4D9DF-1454-41FE-8A33-E1F0D46AF1B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +18,14 @@ Global
 		{041C5017-A092-B0A3-7A70-208A1D4A86E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{041C5017-A092-B0A3-7A70-208A1D4A86E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{041C5017-A092-B0A3-7A70-208A1D4A86E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E02EC85C-023D-4A12-AB90-106529B3ADD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E02EC85C-023D-4A12-AB90-106529B3ADD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E02EC85C-023D-4A12-AB90-106529B3ADD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E02EC85C-023D-4A12-AB90-106529B3ADD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F4D9DF-1454-41FE-8A33-E1F0D46AF1B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F4D9DF-1454-41FE-8A33-E1F0D46AF1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F4D9DF-1454-41FE-8A33-E1F0D46AF1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F4D9DF-1454-41FE-8A33-E1F0D46AF1B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
