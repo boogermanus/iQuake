@@ -1,9 +1,11 @@
 using iQuake.Core.Models.Database;
 using iQuake.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Permutate.Core.Auth.Interfaces;
+using Permutate.Core.Auth.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://localhost:5006");
+builder.WebHost.UseUrls("http://localhost:5007");
 builder.Services.AddControllers();
 
 // Add services to the container.
@@ -22,6 +24,9 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireDigit = false;
 })
 .AddEntityFrameworkStores<iQuakeDbContext>();
+
+// register custom services
+builder.Services.AddTransient<IUserService, UserService>();
 
 var app = builder.Build();
 
