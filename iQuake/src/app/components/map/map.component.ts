@@ -11,14 +11,14 @@ import { DataService } from '../../services/data.service';
   imports: [
     LeafletModule,
     CommonModule,
-    MatButtonModule 
+    MatButtonModule
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
 export class MapComponent {
   public markers: Layer[] = [];
-  public latLng: LatLng = new LatLng(33.67,-101.82);
+  public latLng: LatLng = new LatLng(33.67, -101.82);
   public locationSaved = output<boolean>();
   public options: any = {
     layers: [
@@ -35,12 +35,23 @@ export class MapComponent {
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
     this.markers.splice(0);
-    const newMarker = marker([this.latLng.lat, this.latLng.lng], {icon: icon({iconUrl: 'assets/marker-icon.png'})})
+    const newMarker = marker(
+      [this.latLng.lat, this.latLng.lng],
+      {
+        icon: icon(
+          { 
+            iconUrl: 'assets/marker-icon.png',
+            iconSize: [25,41],
+            iconAnchor: [13,41],
+            shadowUrl: 'assets/marker-shadow.png'
+          },
+        )
+      })
     this.markers.push(newMarker);
   }
 
   public saveLocation(): void {
-    this.dataService.saveLocation({lat: this.latLng.lat, lng: this.latLng.lng});
+    this.dataService.saveLocation({ lat: this.latLng.lat, lng: this.latLng.lng });
     this.locationSaved.emit(true);
   }
 }
