@@ -47,16 +47,15 @@ export class MapComponent implements OnInit {
     if(location !== undefined) {
       this.latLng = location.latLng; 
       this.addMarker(this.latLng);
-      // const radius = circle(this.latLng, {radius: 5 * 1000 })
-      // this.markers.push(radius);
+
     }
 
   }
 
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
-    this.markers.splice(0);
-    this.addMarker(this.latLng);
+    this.markers = [];
+    this.addMarker(this.latLng, );
   }
 
   private addMarker(latLng: LatLng): void {
@@ -73,6 +72,8 @@ export class MapComponent implements OnInit {
         )
       })
     this.markers.push(newMarker);
+    const myRadius = circle(this.latLng, {radius: 1000 * 250 })
+    this.markers.push(myRadius);
   }
 
   public saveLocation(): void {
