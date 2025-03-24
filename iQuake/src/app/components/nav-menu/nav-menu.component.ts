@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -17,5 +18,11 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrl: './nav-menu.component.scss'
 })
 export class NavMenuComponent {
+
+  constructor(private readonly router: Router) {}
+
+  public onSetLocation(): void {
+    this.router.navigate(['/location'])
+  }
 
 }

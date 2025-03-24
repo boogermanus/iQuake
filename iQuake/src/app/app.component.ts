@@ -3,16 +3,15 @@ import { MapComponent } from "./components/map/map.component";
 import { DataService } from './services/data.service';
 import { ILocation } from './interfaces/ilocation';
 import { QuakesComponent } from './components/quakes/quakes.component';
-import { provideHttpClient } from '@angular/common/http';
 import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    MapComponent,
-    QuakesComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    RouterModule
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
