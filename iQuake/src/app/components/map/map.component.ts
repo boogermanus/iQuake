@@ -4,6 +4,7 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
 import { DataService } from '../../services/data.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -11,7 +12,8 @@ import { DataService } from '../../services/data.service';
   imports: [
     LeafletModule,
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
@@ -28,7 +30,9 @@ export class MapComponent implements OnInit {
     center: this.latLng
   };
 
-  constructor(private readonly dataService: DataService) {
+  constructor(
+    private readonly dataService: DataService,
+    private readonly router: Router) {
 
   }
 
@@ -64,7 +68,8 @@ export class MapComponent implements OnInit {
   }
 
   public saveLocation(): void {
-    this.dataService.saveLocation({ latLng: this.latLng});
+    this.dataService.saveLocation({ latLng: this.latLng, mag: 4});
     this.locationSaved.emit(true);
+    this.router.navigate(['/']);
   }
 }

@@ -40,7 +40,7 @@ export class QuakesComponent implements OnInit {
   }
 
   public loadQuakes() {
-    this.quakeService.getQuakes(this.location ?? { latLng: new LatLng(0, 0) })
+    this.quakeService.getQuakes(this.location ?? { latLng: new LatLng(0, 0), mag: 0 })
       .subscribe({
         next: (data) => {
           this.features = data.features
