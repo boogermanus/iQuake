@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, output } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { LatLng, latLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
+import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
 import { DataService } from '../../services/data.service';
 
@@ -39,10 +39,10 @@ export class MapComponent {
       [this.latLng.lat, this.latLng.lng],
       {
         icon: icon(
-          { 
+          {
             iconUrl: 'assets/marker-icon.png',
-            iconSize: [25,41],
-            iconAnchor: [13,41],
+            iconSize: [25, 41],
+            iconAnchor: [13, 41],
             shadowUrl: 'assets/marker-shadow.png'
           },
         )
