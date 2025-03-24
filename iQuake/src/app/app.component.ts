@@ -4,14 +4,16 @@ import { DataService } from './services/data.service';
 import { ILocation } from './interfaces/ilocation';
 import { QuakesComponent } from './components/quakes/quakes.component';
 import { provideHttpClient } from '@angular/common/http';
+import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     MapComponent,
-    QuakesComponent
-  ],
+    QuakesComponent,
+    NavMenuComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
