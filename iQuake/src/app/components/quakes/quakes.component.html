@@ -1,10 +1,3 @@
-<!-- <div class="row justify-content-center">
-    <div class="col-md-8">
-        @for(properties of features; track properties){
-            <p>{{properties | json}}</p>
-        }
-    </div>
-</div> -->
 @for(quake of features; track quake){
 <div class="row justify-content-center mt-1">
     <div class="col-md-4">
@@ -30,4 +23,10 @@
         </mat-card>
     </div>
 </div>
+}
+
+@if(noQuakes) {
+    <div class="row justify-content-center">
+        <p>No quakes in your area within the last 3 months</p>
+    </div>
 }

@@ -20,6 +20,7 @@ export class QuakesComponent implements OnInit {
 
   public location?: ILocation = undefined;
   public features: any[] = [];
+  public noQuakes: boolean = false;
   constructor(
     private readonly quakeService: QuakeService,
     private readonly dataService: DataService
@@ -44,6 +45,9 @@ export class QuakesComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.features = data.features
+          if(this.features.length === 0) {
+            this.noQuakes = true;
+          }
         }
       })
   }

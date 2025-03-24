@@ -21,7 +21,6 @@ import { Router, RouterModule } from '@angular/router';
 export class MapComponent implements OnInit {
   public markers: Layer[] = [];
   public latLng: LatLng = new LatLng(33.67, -101.82);
-  public locationSaved = output<boolean>();
   public options: any = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
@@ -69,7 +68,6 @@ export class MapComponent implements OnInit {
 
   public saveLocation(): void {
     this.dataService.saveLocation({ latLng: this.latLng, mag: 4});
-    this.locationSaved.emit(true);
     this.router.navigate(['/']);
   }
 }
