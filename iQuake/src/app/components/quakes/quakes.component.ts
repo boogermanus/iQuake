@@ -4,6 +4,7 @@ import { DataService } from '../../services/data.service';
 import { ILocation } from '../../interfaces/ilocation';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { LatLng } from 'leaflet';
 
 @Component({
   selector: 'app-quakes',
@@ -39,7 +40,7 @@ export class QuakesComponent implements OnInit {
   }
 
   public loadQuakes() {
-    this.quakeService.getQuakes(this.location ?? { lat: 0, lng: 0 })
+    this.quakeService.getQuakes(this.location ?? { latLng: new LatLng(0, 0) })
       .subscribe({
         next: (data) => {
           this.features = data.features

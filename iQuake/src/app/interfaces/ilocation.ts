@@ -1,4 +1,5 @@
+import { LatLng } from "leaflet";
+
 export interface ILocation {
-    lat: number;
-    lng: number;
+    latLng: LatLng
 }

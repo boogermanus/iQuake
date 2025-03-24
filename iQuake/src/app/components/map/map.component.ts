@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, output } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +16,7 @@ import { DataService } from '../../services/data.service';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
   public markers: Layer[] = [];
   public latLng: LatLng = new LatLng(33.67, -101.82);
   public locationSaved = output<boolean>();
@@ -32,9 +32,22 @@ export class MapComponent {
 
   }
 
+  public ngOnInit(): void {
+    const location = this.dataService.getLocation();
+    if(location !== undefined) {
+      this.latLng = location.latLng; 
+      this.addMarker(this.latLng);
+    }
+
+  }
+
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
     this.markers.splice(0);
+    this.addMarker(this.latLng);
+  }
+
+  private addMarker(latLng: LatLng): void {
     const newMarker = marker(
       [this.latLng.lat, this.latLng.lng],
       {
@@ -51,7 +64,7 @@ export class MapComponent {
   }
 
   public saveLocation(): void {
-    this.dataService.saveLocation({ lat: this.latLng.lat, lng: this.latLng.lng });
+    this.dataService.saveLocation({ latLng: this.latLng});
     this.locationSaved.emit(true);
   }
 }

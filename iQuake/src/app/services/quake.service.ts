@@ -24,8 +24,8 @@ export class QuakeService {
       .append('starttime',previousMoment)
       .append('endtime', currentMoment)
       .append('minmagnitude', 4)
-      .append('latitude', location.lat)
-      .append('longitude', location.lng)
+      .append('latitude', location.latLng.lat)
+      .append('longitude', location.latLng.lng)
       .append('maxradiuskm', 200)
 
     return query;
