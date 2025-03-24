@@ -23,7 +23,7 @@ export class QuakeService {
       .append('format','geojson')
       .append('starttime',previousMoment)
       .append('endtime', currentMoment)
-      .append('minmagnitude', 4)
+      .append('minmagnitude', location.mag)
       .append('latitude', location.latLng.lat)
       .append('longitude', location.latLng.lng)
       .append('maxradiuskm', 200)

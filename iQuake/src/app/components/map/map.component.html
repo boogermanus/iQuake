@@ -19,6 +19,14 @@
     </div>
 </div>
 <div class="row justify-content-center">
+    <div class="col-md-2">
+        <mat-form-field>
+            <mat-label>Minimum Magnitude</mat-label>
+            <input matInput type="number" placeholder="minimum magnitude" [(ngModel)]="mag">
+        </mat-form-field>
+    </div>
+</div>
+<div class="row justify-content-center">
     <div class="col-md-2 text-center">
         <button mat-raised-button (click)="saveLocation()">Save</button>
     </div>

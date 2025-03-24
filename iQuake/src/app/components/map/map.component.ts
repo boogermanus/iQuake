@@ -5,6 +5,9 @@ import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leafl
 import { MatButtonModule } from '@angular/material/button';
 import { DataService } from '../../services/data.service';
 import { Router, RouterModule } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -13,7 +16,10 @@ import { Router, RouterModule } from '@angular/router';
     LeafletModule,
     CommonModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
@@ -21,6 +27,7 @@ import { Router, RouterModule } from '@angular/router';
 export class MapComponent implements OnInit {
   public markers: Layer[] = [];
   public latLng: LatLng = new LatLng(33.67, -101.82);
+  public mag: number = 4;
   public options: any = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
@@ -67,7 +74,7 @@ export class MapComponent implements OnInit {
   }
 
   public saveLocation(): void {
-    this.dataService.saveLocation({ latLng: this.latLng, mag: 4});
+    this.dataService.saveLocation({ latLng: this.latLng, mag: this.mag});
     this.router.navigate(['/']);
   }
 }
