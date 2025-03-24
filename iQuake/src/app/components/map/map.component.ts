@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, output } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon } from 'leaflet';
+import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon, polygon, circle } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
 import { DataService } from '../../services/data.service';
 import { Router, RouterModule } from '@angular/router';
@@ -47,6 +47,8 @@ export class MapComponent implements OnInit {
     if(location !== undefined) {
       this.latLng = location.latLng; 
       this.addMarker(this.latLng);
+      // const radius = circle(this.latLng, {radius: 5 * 1000 })
+      // this.markers.push(radius);
     }
 
   }
