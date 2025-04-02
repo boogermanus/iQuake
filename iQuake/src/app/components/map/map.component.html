@@ -5,8 +5,11 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div style="height: 300px;" leaflet [leafletOptions]="options" [leafletLayers]="markers"
-            (leafletClick)="handleClick($event)">
+        <div style="height: 300px;" 
+            leaflet [leafletOptions]="options" 
+            [leafletLayers]="markers"
+            (leafletClick)="handleClick($event)"
+            (leafletMapReady)="mapReady($event)">
         </div>
     </div>
 </div>
@@ -19,10 +22,25 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-md-2">
+    <div class="col-md-4 text-center">
         <mat-form-field>
             <mat-label>Minimum Magnitude</mat-label>
-            <input matInput type="number" placeholder="minimum magnitude" [(ngModel)]="mag">
+            <mat-select [(value)]="mag">
+                <mat-option [value]="2.5">2.5+</mat-option>
+                <mat-option [value]="4.5">4.5+</mat-option>
+                <mat-option [value]="5">5+</mat-option>
+                <mat-option [value]="6">6+</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-md-4 text-center">
+        <mat-form-field>
+            <mat-label>Range (km)</mat-label>
+            <mat-select [(value)]="range" (valueChange)="rangeChange(latLng)">
+                <mat-option [value]="100">100km</mat-option>
+                <mat-option [value]="250">250km</mat-option>
+                <mat-option [value]="400">400km</mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 </div>

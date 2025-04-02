@@ -5,6 +5,7 @@ import { ILocation } from '../../interfaces/ilocation';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { LatLng } from 'leaflet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quakes',
@@ -23,7 +24,8 @@ export class QuakesComponent implements OnInit {
   public noQuakes: boolean = false;
   constructor(
     private readonly quakeService: QuakeService,
-    private readonly dataService: DataService
+    private readonly dataService: DataService,
+    private readonly router: Router
   ) {
 
   }
@@ -37,11 +39,14 @@ export class QuakesComponent implements OnInit {
     if (this.location !== undefined) {
       this.loadQuakes();
     }
+    else {
+      this.router.navigate(['/location']);
+    }
 
   }
 
   public loadQuakes() {
-    this.quakeService.getQuakes(this.location ?? { latLng: new LatLng(0, 0), mag: 0 })
+    this.quakeService.getQuakes(this.location ?? { latLng: new LatLng(0, 0), mag: 0, range: 250 })
       .subscribe({
         next: (data) => {
           this.features = data.features

@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, output } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon, polygon, circle } from 'leaflet';
+import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon, circle, Map } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
 import { DataService } from '../../services/data.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-map',
   standalone: true,
@@ -19,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule
+    MatSelectModule,
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
@@ -27,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class MapComponent implements OnInit {
   public markers: Layer[] = [];
   public latLng: LatLng = new LatLng(33.67, -101.82);
-  public mag: number = 4;
+  public mag: number = 4.5;
+  public range: number = 250;
   public options: any = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
@@ -35,6 +35,7 @@ export class MapComponent implements OnInit {
     zoom: 5,
     center: this.latLng
   };
+  public map?: Map;
 
   constructor(
     private readonly dataService: DataService,
@@ -44,8 +45,10 @@ export class MapComponent implements OnInit {
 
   public ngOnInit(): void {
     const location = this.dataService.getLocation();
-    if(location !== undefined) {
-      this.latLng = location.latLng; 
+    if (location !== undefined) {
+      this.latLng = location.latLng;
+      this.mag = location.mag;
+      this.range = location.range;
       this.addMarker(this.latLng);
 
     }
@@ -55,7 +58,7 @@ export class MapComponent implements OnInit {
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
     this.markers = [];
-    this.addMarker(this.latLng, );
+    this.addMarker(this.latLng);
   }
 
   private addMarker(latLng: LatLng): void {
@@ -70,14 +73,30 @@ export class MapComponent implements OnInit {
             shadowUrl: 'assets/marker-shadow.png'
           },
         )
-      })
+      });
+
     this.markers.push(newMarker);
-    const myRadius = circle(this.latLng, {radius: 1000 * 250 })
+    this.addRangeMarker();
+    this.map?.setZoom(5);
+  }
+
+  public rangeChange(latLng: LatLng): void {
+    // splice the range marker out
+    this.markers.splice(1);
+    this.addRangeMarker();
+  }
+
+  private addRangeMarker(): void {
+    const myRadius = circle(this.latLng, { radius: 1000 * this.range })
     this.markers.push(myRadius);
   }
 
   public saveLocation(): void {
-    this.dataService.saveLocation({ latLng: this.latLng, mag: this.mag});
+    this.dataService.saveLocation({ latLng: this.latLng, mag: this.mag, range: this.range });
     this.router.navigate(['/']);
+  }
+
+  public mapReady(map: Map): void {
+    this.map = map;
   }
 }

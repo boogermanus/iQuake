@@ -13,20 +13,20 @@ export class QuakeService {
   constructor(private readonly httpClient: HttpClient) { }
 
   public getQuakes(location: ILocation): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl, {params: this.buildQueryParams(location)})
+    return this.httpClient.get<any>(this.baseUrl, { params: this.buildQueryParams(location) })
   }
 
   private buildQueryParams(location: ILocation): HttpParams {
     const currentMoment = moment().format('YYYY-MM-DD');
     const previousMoment = moment().subtract(90, 'days').format('YYYY-MM-DD');
     const query = new HttpParams()
-      .append('format','geojson')
-      .append('starttime',previousMoment)
+      .append('format', 'geojson')
+      .append('starttime', previousMoment)
       .append('endtime', currentMoment)
       .append('minmagnitude', location.mag)
       .append('latitude', location.latLng.lat)
       .append('longitude', location.latLng.lng)
-      .append('maxradiuskm', 200)
+      .append('maxradiuskm', location.range)
 
     return query;
   }
