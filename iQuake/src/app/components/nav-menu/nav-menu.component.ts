@@ -6,16 +6,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-nav-menu',
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule
-  ],
-  templateUrl: './nav-menu.component.html',
-  styleUrl: './nav-menu.component.scss'
+    selector: 'app-nav-menu',
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule
+    ],
+    templateUrl: './nav-menu.component.html',
+    styleUrl: './nav-menu.component.scss'
 })
 export class NavMenuComponent {
 

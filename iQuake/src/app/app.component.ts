@@ -7,14 +7,13 @@ import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    NavMenuComponent,
-    RouterModule
-],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [
+        NavMenuComponent,
+        RouterModule
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'iQuake';
