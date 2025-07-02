@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { QuakeService } from './quake.service';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('QuakeService', () => {
   let service: QuakeService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient()]
+    });
     service = TestBed.inject(QuakeService);
   });
 
