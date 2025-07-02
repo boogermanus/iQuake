@@ -9,19 +9,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 @Component({
-  selector: 'app-map',
-  standalone: true,
-  imports: [
-    LeafletModule,
-    CommonModule,
-    MatButtonModule,
-    RouterModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-  ],
-  templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+    selector: 'app-map',
+    imports: [
+        LeafletModule,
+        CommonModule,
+        MatButtonModule,
+        RouterModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSelectModule,
+    ],
+    templateUrl: './map.component.html',
+    styleUrl: './map.component.scss'
 })
 export class MapComponent implements OnInit {
   public markers: Layer[] = [];

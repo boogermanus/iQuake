@@ -8,14 +8,13 @@ import { LatLng } from 'leaflet';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-quakes',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule
-  ],
-  templateUrl: './quakes.component.html',
-  styleUrl: './quakes.component.scss'
+    selector: 'app-quakes',
+    imports: [
+        CommonModule,
+        MatCardModule
+    ],
+    templateUrl: './quakes.component.html',
+    styleUrl: './quakes.component.scss'
 })
 export class QuakesComponent implements OnInit {
 
