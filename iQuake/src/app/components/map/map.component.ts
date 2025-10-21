@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, output } from '@angular/core';
+import {AfterViewInit, Component, OnInit, output} from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon, circle, Map } from 'leaflet';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     templateUrl: './map.component.html',
     styleUrl: './map.component.scss'
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
   public markers: Layer[] = [];
   public latLng: LatLng = new LatLng(33.67, -101.82);
   public mag: number = 4.5;
@@ -42,14 +42,14 @@ export class MapComponent implements OnInit {
 
   }
 
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
     const location = this.dataService.getLocation();
     if (location !== undefined) {
       this.latLng = location.latLng;
       this.mag = location.mag;
       this.range = location.range;
       this.addMarker(this.latLng);
-
+      this.map?.setView(this.latLng);
     }
 
   }
