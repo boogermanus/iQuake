@@ -1,5 +1,5 @@
 @for(quake of features; track quake){
-<div class="row justify-content-center mt-1">
+<div class="row justify-content-center mt-2">
     <div class="col-md-4">
         <mat-card appearance="raised">
             <mat-card-header>
@@ -8,7 +8,7 @@
             <mat-card-content>
                 <div class="d-flex flex-row">
                     <div class="m-1">Mag:</div>
-                    <div class="m-1">{{quake.properties.mag}}</div>
+                    <div class="m-1" [style]="getMagnitudeStyle(quake.properties.mag)">{{quake.properties.mag}}</div>
                 </div>
                 <div class="d-flex flex-row">
                     <div class="m-1">Date:</div>
