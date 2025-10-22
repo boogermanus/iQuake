@@ -1,26 +1,27 @@
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {AfterViewInit, Component, OnInit, output} from '@angular/core';
-import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon, circle, Map } from 'leaflet';
-import { MatButtonModule } from '@angular/material/button';
-import { DataService } from '../../services/data.service';
-import { Router, RouterModule } from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import {LeafletModule} from '@bluehalo/ngx-leaflet';
+import {LatLng, Layer, LeafletMouseEvent, tileLayer, marker, icon, circle, Map} from 'leaflet';
+import {MatButtonModule} from '@angular/material/button';
+import {DataService} from '../../services/data.service';
+import {Router, RouterModule} from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
 @Component({
-    selector: 'app-map',
-    imports: [
-        LeafletModule,
-        CommonModule,
-        MatButtonModule,
-        RouterModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatSelectModule,
-    ],
-    templateUrl: './map.component.html',
-    styleUrl: './map.component.scss'
+  selector: 'app-map',
+  imports: [
+    LeafletModule,
+    CommonModule,
+    MatButtonModule,
+    RouterModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+  ],
+  templateUrl: './map.component.html',
+  styleUrl: './map.component.scss'
 })
 export class MapComponent implements AfterViewInit {
   public markers: Layer[] = [];
@@ -29,11 +30,12 @@ export class MapComponent implements AfterViewInit {
   public range: number = 250;
   public options: any = {
     layers: [
-      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Open Street Map' }),
+      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: 'Open Street Map'}),
     ],
     zoom: 5,
     center: this.latLng
   };
+  public saveButtonDisabled: boolean = true;
   public map?: Map;
 
   constructor(
@@ -56,8 +58,14 @@ export class MapComponent implements AfterViewInit {
 
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
-    this.markers = [];
-    this.addMarker(this.latLng);
+
+    if (this.latLng.lng < -180) {
+      this.saveButtonDisabled = true;
+    } else {
+      this.saveButtonDisabled = false;
+      this.markers = [];
+      this.addMarker(this.latLng);
+    }
   }
 
   private addMarker(latLng: LatLng): void {
@@ -86,12 +94,12 @@ export class MapComponent implements AfterViewInit {
   }
 
   private addRangeMarker(): void {
-    const myRadius = circle(this.latLng, { radius: 1000 * this.range })
+    const myRadius = circle(this.latLng, {radius: 1000 * this.range})
     this.markers.push(myRadius);
   }
 
   public saveLocation(): void {
-    this.dataService.saveLocation({ latLng: this.latLng, mag: this.mag, range: this.range });
+    this.dataService.saveLocation({latLng: this.latLng, mag: this.mag, range: this.range});
     this.router.navigate(['/']);
   }
 
